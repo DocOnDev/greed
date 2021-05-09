@@ -11,6 +11,14 @@ public class GreedTest {
     @Test
     public void score_one_onehundred() {
         Greed greed = new Greed();
+        greed.addDice(1);
         assertThat(greed.score(), is(equalTo(100)));
+    }
+
+    @Test
+    public void score_five_Fifty() {
+        Greed greed = new Greed();
+        greed.addDice(5);
+        assertThat(greed.score(), is(equalTo(50)));
     }
 }
