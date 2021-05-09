@@ -34,4 +34,12 @@ public class GreedTest {
         greed.addDice(1);
         assertThat(greed.score(), is(equalTo(200)));
     }
+
+    @Test
+    public void score_tripleOne_OneThousand() {
+        greed.addDice(1);
+        greed.addDice(1);
+        greed.addDice(1);
+        assertThat(greed.score(), is(equalTo(1000)));
+    }
 }
