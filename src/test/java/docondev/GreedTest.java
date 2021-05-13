@@ -57,6 +57,12 @@ public class GreedTest {
         assertThat(greed.score(), is(equalTo(1000)));
     }
 
+    @Test
+    public void score_tripleTwo_TwoHundred() {
+        addHowManyDieOfValue(3, 2);
+        assertThat(greed.score(), is(equalTo(200)));
+    }
+
     private void addHowManyDieOfValue(int howMany, Integer one) {
         rangeClosed(1, howMany).forEach(i -> greed.addDice(one));
     }

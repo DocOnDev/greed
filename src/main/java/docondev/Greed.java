@@ -12,7 +12,9 @@ public class Greed {
     }
 
     private Integer scoreTriples(List<Integer> dice) {
-        return 1000;
+        Integer dieValue = dice.get(0);
+        if (dieValue == 1) return 1000;
+        return dieValue * 100;
     }
 
     private Integer scoreOneDie(Integer die) {
