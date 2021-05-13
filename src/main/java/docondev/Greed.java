@@ -2,16 +2,33 @@ package docondev;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Greed {
     private List<Integer> dice = new ArrayList<>();
 
     public Integer score() {
-        if (dice.size() == 3) return scoreTriples(dice);
-        if (dice.size() == 4) return scoreQuads(dice);
-        if (dice.size() == 5) return scoreQuints(dice);
-        if (dice.size() == 6) return scoreSects(dice);
-        return dice.stream().map( die -> scoreOneDie(die)).reduce(0, Integer::sum);
+        Integer result = 0;
+        List<List<Integer>> sets = createValueSets();
+        for ( List<Integer> set : sets ) {
+            result += scoreSet(set);
+        }
+        return result;
+    }
+
+    private List<List<Integer>> createValueSets() {
+        return dice.stream()
+                .collect(Collectors.groupingBy(die -> die))
+                .values().stream()
+                .collect(Collectors.toList());
+    }
+
+    private Integer scoreSet(List<Integer> set) {
+        if (set.size() == 3) return scoreTriples(set);
+        if (set.size() == 4) return scoreQuads(set);
+        if (set.size() == 5) return scoreQuints(set);
+        if (set.size() == 6) return scoreSects(set);
+        return set.stream().map( die -> scoreOneDie(die)).reduce(0, Integer::sum);
     }
 
     private Integer scoreSects(List<Integer> dice) {
