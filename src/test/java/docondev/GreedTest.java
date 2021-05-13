@@ -17,6 +17,11 @@ public class GreedTest {
         greed = new Greed();
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void addDice_seven_ThrowError() {
+        greed.addDice(7);
+    }
+
     @Test
     public void score_singleOne_onehundred() {
         greed.addDice(1);

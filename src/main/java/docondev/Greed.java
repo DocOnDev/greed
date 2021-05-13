@@ -22,6 +22,7 @@ public class Greed {
     }
 
     public void addDice(Integer die) {
+        if ( die > 6 ) throw new IllegalArgumentException("Die value must be between 1 and 6");
         this.dice.add(die);
     }
 }
