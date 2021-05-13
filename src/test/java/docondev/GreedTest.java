@@ -81,6 +81,12 @@ public class GreedTest {
         assertThat(greed.score(), is(equalTo(800)));
     }
 
+    @Test
+    public void score_sectupleSix_FortyEightHundred() {
+        addHowManyDieOfValue(6, 6);
+        assertThat(greed.score(), is(equalTo(4800)));
+    }
+
     private void addHowManyDieOfValue(int howMany, Integer one) {
         rangeClosed(1, howMany).forEach(i -> greed.addDice(one));
     }

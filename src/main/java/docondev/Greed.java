@@ -10,7 +10,12 @@ public class Greed {
         if (dice.size() == 3) return scoreTriples(dice);
         if (dice.size() == 4) return scoreQuads(dice);
         if (dice.size() == 5) return scoreQuints(dice);
+        if (dice.size() == 6) return scoreSects(dice);
         return dice.stream().map( die -> scoreOneDie(die)).reduce(0, Integer::sum);
+    }
+
+    private Integer scoreSects(List<Integer> dice) {
+        return 8 * scoreTriples(dice);
     }
 
     private Integer scoreQuints(List<Integer> dice) {
