@@ -15,19 +15,18 @@ public class Greed {
     public Integer score() {
         Integer result = 0;
         for ( List<Integer> set : createValueSets()) {
-            result += scoreSet(new DieSet(set));
+            result += scoreSet(set);
         }
         return result;
     }
 
-    private Integer scoreSet(DieSet set) {
-        List<Integer> dice = set.set;
-        if (dice.size() == 1) return scoreSingles(dice);
-        if (dice.size() == 2) return scoreDoubles(dice);
-        if (dice.size() == 3) return scoreTriples(dice);
-        if (dice.size() == 4) return scoreQuads(dice);
-        if (dice.size() == 5) return scoreQuints(dice);
-        if (dice.size() == 6) return scoreSects(dice);
+    private Integer scoreSet(List<Integer> set) {
+        if (set.size() == 1) return scoreSingles(set);
+        if (set.size() == 2) return scoreDoubles(set);
+        if (set.size() == 3) return scoreTriples(set);
+        if (set.size() == 4) return scoreQuads(set);
+        if (set.size() == 5) return scoreQuints(set);
+        if (set.size() == 6) return scoreSects(set);
         return 0;
     }
 
@@ -65,13 +64,5 @@ public class Greed {
                 .collect(Collectors.groupingBy(die -> die))
                 .values().stream()
                 .collect(Collectors.toList());
-    }
-
-    private class DieSet {
-        List<Integer> set = new ArrayList<>();
-
-        public DieSet(List<Integer> set) {
-            this.set = set;
-        }
     }
 }
