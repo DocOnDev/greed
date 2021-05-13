@@ -9,7 +9,12 @@ public class Greed {
     public Integer score() {
         if (dice.size() == 3) return scoreTriples(dice);
         if (dice.size() == 4) return scoreQuads(dice);
+        if (dice.size() == 5) return scoreQuints(dice);
         return dice.stream().map( die -> scoreOneDie(die)).reduce(0, Integer::sum);
+    }
+
+    private Integer scoreQuints(List<Integer> dice) {
+        return 4 * scoreTriples(dice);
     }
 
     private Integer scoreQuads(List<Integer> dice) {
