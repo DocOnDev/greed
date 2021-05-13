@@ -8,7 +8,12 @@ public class Greed {
 
     public Integer score() {
         if (dice.size() == 3) return scoreTriples(dice);
+        if (dice.size() == 4) return scoreQuads(dice);
         return dice.stream().map( die -> scoreOneDie(die)).reduce(0, Integer::sum);
+    }
+
+    private Integer scoreQuads(List<Integer> dice) {
+        return 2 * scoreTriples(dice);
     }
 
     private Integer scoreTriples(List<Integer> dice) {
