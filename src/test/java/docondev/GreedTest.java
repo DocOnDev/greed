@@ -18,15 +18,21 @@ public class GreedTest {
     }
 
     @Test
-    public void score_one_onehundred() {
+    public void score_singleOne_onehundred() {
         greed.addDice(1);
         assertThat(greed.score(), is(equalTo(100)));
     }
 
     @Test
-    public void score_five_Fifty() {
+    public void score_singleFive_Fifty() {
         greed.addDice(5);
         assertThat(greed.score(), is(equalTo(50)));
+    }
+
+    @Test
+    public void score_singleTwo_Zero() {
+        greed.addDice(2);
+        assertThat(greed.score(), is(equalTo(0)));
     }
 
     @Test

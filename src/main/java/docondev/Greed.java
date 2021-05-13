@@ -17,7 +17,8 @@ public class Greed {
 
     private Integer scoreOneDie(Integer die) {
         if ( die == 1) return 100;
-        return 50;
+        if ( die == 5) return 50;
+        return 0;
     }
 
     public void addDice(Integer die) {
