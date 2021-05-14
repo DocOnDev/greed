@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import static java.util.stream.IntStream.rangeClosed;
 
 public class Greed {
-    private List<Integer> diceValues = new ArrayList<>();
     private List<Die> dice = new ArrayList<>();
 
     public void addDice(Integer dieValue) {
@@ -16,13 +15,13 @@ public class Greed {
 
     public Integer score() {
         Integer result = 0;
-        for ( List<Integer> set : createValueSets()) {
+        for ( List<Die> set : groupDiceByValue()) {
             result += scoreSet(set);
         }
         return result;
     }
 
-    private Integer scoreSet(List<Integer> set) {
+    private Integer scoreSet(List<Die> set) {
         if (set.size() == 1) return scoreSingles(set);
         if (set.size() == 2) return scoreDoubles(set);
         if (set.size() == 3) return scoreTriples(set);
@@ -32,45 +31,39 @@ public class Greed {
         return 0;
     }
 
-    private Integer scoreSingles(List<Integer> dice) {
-        Integer die = dice.get(0);
+    private Integer scoreSingles(List<Die> dice) {
+        Integer die = dice.get(0).value;
         if ( die == 1) return 100;
         if ( die == 5) return 50;
         return 0;
     }
 
-    private Integer scoreDoubles(List<Integer> dice) {
+    private Integer scoreDoubles(List<Die> dice) {
         return 2 * scoreSingles(dice);
     }
 
-    private Integer scoreTriples(List<Integer> dice) {
-        Integer dieValue = dice.get(0);
+    private Integer scoreTriples(List<Die> dice) {
+        Integer dieValue = dice.get(0).value;
         if (dieValue == 1) return 1000;
         return dieValue * 100;
     }
 
-    private Integer scoreQuads(List<Integer> dice) {
+    private Integer scoreQuads(List<Die> dice) {
         return 2 * scoreTriples(dice);
     }
 
-    private Integer scoreQuints(List<Integer> dice) {
+    private Integer scoreQuints(List<Die> dice) {
         return 4 * scoreTriples(dice);
     }
 
-    private Integer scoreSects(List<Integer> dice) {
+    private Integer scoreSects(List<Die> dice) {
         return 8 * scoreTriples(dice);
     }
 
-    private List<List<Integer>> createValueSets() {
-        return dice.stream().map(die -> die.value)
-                .collect(Collectors.groupingBy(die -> die))
+    private List<List<Die>> groupDiceByValue() {
+        return dice.stream().collect(Collectors.groupingBy(die -> die.value))
                 .values().stream()
                 .collect(Collectors.toList());
-
-//        return diceValues.stream()
-//                .collect(Collectors.groupingBy(die -> die))
-//                .values().stream()
-//                .collect(Collectors.toList());
     }
 
     private class Die {
