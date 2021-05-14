@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 import static java.util.stream.IntStream.rangeClosed;
 
 public class Greed {
-    private List<Die> dice = new ArrayList<>();
+    private Dice dice = new Dice();
+    private List<Die> dieList = new ArrayList<>();
 
-    public void addDice(Integer dieValue) {
+    public void addDie(Integer dieValue) {
         dice.add(new Die(dieValue));
+        dieList.add(new Die(dieValue));
     }
 
     public Integer score() {
@@ -61,9 +63,7 @@ public class Greed {
     }
 
     private List<List<Die>> groupDiceByValue() {
-        return dice.stream().collect(Collectors.groupingBy(die -> die.value))
-                .values().stream()
-                .collect(Collectors.toList());
+        return dice.groupByValue();
     }
 
     private class Die {
@@ -78,6 +78,20 @@ public class Greed {
 
         private boolean isValidValue(Integer dieValue) {
             return rangeClosed(LOW_VALUE, HIGH_VALUE).anyMatch(num -> num == dieValue);
+        }
+    }
+
+    private class Dice {
+        private List<Die> dieList = new ArrayList<>();
+
+        public void add(Die die) {
+            this.dieList.add(die);
+        }
+
+        public List<List<Die>> groupByValue() {
+            return dieList.stream().collect(Collectors.groupingBy(die -> die.value))
+                    .values().stream()
+                    .collect(Collectors.toList());
         }
     }
 }

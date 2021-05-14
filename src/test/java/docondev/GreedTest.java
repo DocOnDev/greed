@@ -19,29 +19,29 @@ public class GreedTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void addDice_seven_ThrowError() {
-        greed.addDice(7);
+        greed.addDie(7);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void addDice_negativeOne_ThrowError() {
-        greed.addDice(-1);
+        greed.addDie(-1);
     }
 
     @Test
     public void score_singleOne_onehundred() {
-        greed.addDice(1);
+        greed.addDie(1);
         assertThat(greed.score(), is(equalTo(100)));
     }
 
     @Test
     public void score_singleFive_Fifty() {
-        greed.addDice(5);
+        greed.addDie(5);
         assertThat(greed.score(), is(equalTo(50)));
     }
 
     @Test
     public void score_singleTwo_Zero() {
-        greed.addDice(2);
+        greed.addDie(2);
         assertThat(greed.score(), is(equalTo(0)));
     }
 
@@ -95,6 +95,6 @@ public class GreedTest {
     }
 
     private void addHowManyDieOfValue(int howMany, Integer one) {
-        rangeClosed(1, howMany).forEach(i -> greed.addDice(one));
+        rangeClosed(1, howMany).forEach(i -> greed.addDie(one));
     }
 }
