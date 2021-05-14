@@ -17,7 +17,4 @@ class DiceSet {
         return dieList.get(0).getValue();
     }
 
-    public List<Die> getList() {
-        return dieList;
-    }
 }
