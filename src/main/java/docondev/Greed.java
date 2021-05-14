@@ -7,9 +7,10 @@ import java.util.stream.Collectors;
 public class Greed {
     private List<Integer> dice = new ArrayList<>();
 
-    public void addDice(Integer die) {
-        if (die < 1 || die > 6 ) throw new IllegalArgumentException("Die value must be between 1 and 6");
-        dice.add(die);
+    public void addDice(Integer dieValue) {
+        Die die = new Die(dieValue);
+        if (dieValue < 1 || dieValue > 6 ) throw new IllegalArgumentException("Die value must be between 1 and 6");
+        dice.add(dieValue);
     }
 
     public Integer score() {
@@ -64,5 +65,13 @@ public class Greed {
                 .collect(Collectors.groupingBy(die -> die))
                 .values().stream()
                 .collect(Collectors.toList());
+    }
+
+    private class Die {
+        private final Integer value;
+
+        public Die(Integer value) {
+            this.value = value;
+        }
     }
 }
