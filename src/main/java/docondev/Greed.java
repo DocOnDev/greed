@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.IntStream.rangeClosed;
+
 public class Greed {
     private List<Integer> dice = new ArrayList<>();
 
     public void addDice(Integer dieValue) {
         Die die = new Die(dieValue);
-        if (dieValue < 1 || dieValue > 6 ) throw new IllegalArgumentException("Die value must be between 1 and 6");
         dice.add(dieValue);
     }
 
@@ -68,10 +69,17 @@ public class Greed {
     }
 
     private class Die {
+        public static final int LOW_VALUE = 1;
+        public static final int HIGH_VALUE = 6;
         private final Integer value;
 
-        public Die(Integer value) {
-            this.value = value;
+        public Die(Integer dieValue) {
+            if (!isValidValue(dieValue)) throw new IllegalArgumentException("Die value must be between 1 and 6");
+            this.value = dieValue;
+        }
+
+        private boolean isValidValue(Integer dieValue) {
+            return rangeClosed(LOW_VALUE, HIGH_VALUE).anyMatch(num -> num == dieValue);
         }
     }
 }
