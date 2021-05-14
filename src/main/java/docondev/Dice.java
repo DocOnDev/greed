@@ -14,7 +14,7 @@ class Dice {
     public List<DiceSet> groupByValue() {
         return dieList.stream().collect(Collectors.groupingBy(die -> die.getValue()))
                 .values().stream()
-                .map(list -> new DiceSet(list))
+                .map(list -> DiceSet.createDiceSet(list))
                 .collect(Collectors.toList());
     }
 
