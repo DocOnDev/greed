@@ -1,10 +1,6 @@
 package docondev;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static java.util.stream.IntStream.rangeClosed;
 
 public class Greed {
     private Dice dice = new Dice();
@@ -15,35 +11,35 @@ public class Greed {
 
     public Integer score() {
         Integer result = 0;
-        for ( List<Die> set : dice.groupByValue()) {
+        for (DiceSet set : dice.groupByValue()) {
             result += scoreSet(set);
         }
         return result;
     }
 
-    private Integer scoreSet(List<Die> set) {
+    private Integer scoreSet(DiceSet set) {
         if (set.size() == 1) return scoreSingles(set);
         if (set.size() == 2) return scoreDoubles(set);
-        if (set.size() == 3) return scoreTriples(set);
-        if (set.size() == 4) return scoreQuads(set);
-        if (set.size() == 5) return scoreQuints(set);
-        if (set.size() == 6) return scoreSects(set);
+        if (set.size() == 3) return scoreTriples(set.getList());
+        if (set.size() == 4) return scoreQuads(set.getList());
+        if (set.size() == 5) return scoreQuints(set.getList());
+        if (set.size() == 6) return scoreSects(set.getList());
         return 0;
     }
 
-    private Integer scoreSingles(List<Die> dice) {
-        Integer die = dice.get(0).value;
+    private Integer scoreSingles(DiceSet dice) {
+        Integer die = dice.getValue();
         if ( die == 1) return 100;
         if ( die == 5) return 50;
         return 0;
     }
 
-    private Integer scoreDoubles(List<Die> dice) {
+    private Integer scoreDoubles(DiceSet dice) {
         return 2 * scoreSingles(dice);
     }
 
     private Integer scoreTriples(List<Die> dice) {
-        Integer dieValue = dice.get(0).value;
+        Integer dieValue = dice.get(0).getValue();
         if (dieValue == 1) return 1000;
         return dieValue * 100;
     }
@@ -60,32 +56,4 @@ public class Greed {
         return 8 * scoreTriples(dice);
     }
 
-    private class Die {
-        public static final int LOW_VALUE = 1;
-        public static final int HIGH_VALUE = 6;
-        private final Integer value;
-
-        public Die(Integer dieValue) {
-            if (!isValidValue(dieValue)) throw new IllegalArgumentException("Die value must be between 1 and 6");
-            this.value = dieValue;
-        }
-
-        private boolean isValidValue(Integer dieValue) {
-            return rangeClosed(LOW_VALUE, HIGH_VALUE).anyMatch(num -> num == dieValue);
-        }
-    }
-
-    private class Dice {
-        private List<Die> dieList = new ArrayList<>();
-
-        public void add(Die die) {
-            this.dieList.add(die);
-        }
-
-        public List<List<Die>> groupByValue() {
-            return dieList.stream().collect(Collectors.groupingBy(die -> die.value))
-                    .values().stream()
-                    .collect(Collectors.toList());
-        }
-    }
 }
