@@ -10,7 +10,20 @@ class DiceSet {
     }
 
     public static DiceSet createDiceSet(List<Die> list) {
-        return new DiceSet(list);
+        switch(list.size()) {
+            case 2:
+                return new DoubleDiceSet(list);
+            case 3:
+                return new TripleDiceSet(list);
+            case 4:
+                return new QuadDiceSet(list);
+            case 5:
+                return new QuintDiceSet(list);
+            case 6:
+                return new SextDiceSet(list);
+            default:
+                return new SingleDiceSet(list);
+        }
     }
 
     public int size() {
