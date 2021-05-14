@@ -9,6 +9,6 @@ public class QuadDiceSet extends DiceSet {
 
     @Override
     Integer scoreSet() {
-        return super.scoreSet();
+        return 2 * scoreTriple(getValue());
     }
 }

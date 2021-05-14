@@ -9,6 +9,6 @@ public class SextDiceSet extends DiceSet {
 
     @Override
     Integer scoreSet() {
-        return super.scoreSet();
+        return 8 * scoreTriple(getValue());
     }
 }

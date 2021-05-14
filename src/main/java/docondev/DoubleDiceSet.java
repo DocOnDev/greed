@@ -9,6 +9,6 @@ public class DoubleDiceSet extends DiceSet {
 
     @Override
     Integer scoreSet() {
-        return super.scoreSet();
+        return 2 * scoreSingle(getValue());
     }
 }

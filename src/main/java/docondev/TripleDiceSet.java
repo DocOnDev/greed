@@ -9,6 +9,8 @@ public class TripleDiceSet extends DiceSet {
 
     @Override
     Integer scoreSet() {
-        return super.scoreSet();
+        Integer dieValue = getValue();
+        return scoreTriple(dieValue);
     }
+
 }

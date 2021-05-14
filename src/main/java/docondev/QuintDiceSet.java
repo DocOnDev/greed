@@ -9,6 +9,6 @@ public class QuintDiceSet extends DiceSet {
 
     @Override
     Integer scoreSet() {
-        return super.scoreSet();
+        return 4 * scoreTriple(getValue());
     }
 }

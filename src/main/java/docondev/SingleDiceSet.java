@@ -9,6 +9,7 @@ public class SingleDiceSet extends DiceSet {
 
     @Override
     Integer scoreSet() {
-        return super.scoreSet();
+        return scoreSingle(getValue());
     }
+
 }
