@@ -6,4 +6,9 @@ public class QuintDiceSet extends DiceSet {
     public QuintDiceSet(List<Die> list) {
         super(list);
     }
+
+    @Override
+    Integer scoreSet() {
+        return super.scoreSet();
+    }
 }
