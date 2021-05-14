@@ -7,11 +7,11 @@ import java.util.stream.Collectors;
 import static java.util.stream.IntStream.rangeClosed;
 
 public class Greed {
-    private List<Integer> dice = new ArrayList<>();
+    private List<Integer> diceValues = new ArrayList<>();
+    private List<Die> dice = new ArrayList<>();
 
     public void addDice(Integer dieValue) {
-        Die die = new Die(dieValue);
-        dice.add(dieValue);
+        dice.add(new Die(dieValue));
     }
 
     public Integer score() {
@@ -62,10 +62,15 @@ public class Greed {
     }
 
     private List<List<Integer>> createValueSets() {
-        return dice.stream()
+        return dice.stream().map(die -> die.value)
                 .collect(Collectors.groupingBy(die -> die))
                 .values().stream()
                 .collect(Collectors.toList());
+
+//        return diceValues.stream()
+//                .collect(Collectors.groupingBy(die -> die))
+//                .values().stream()
+//                .collect(Collectors.toList());
     }
 
     private class Die {
