@@ -8,16 +8,14 @@ import static java.util.stream.IntStream.rangeClosed;
 
 public class Greed {
     private Dice dice = new Dice();
-    private List<Die> dieList = new ArrayList<>();
 
     public void addDie(Integer dieValue) {
         dice.add(new Die(dieValue));
-        dieList.add(new Die(dieValue));
     }
 
     public Integer score() {
         Integer result = 0;
-        for ( List<Die> set : groupDiceByValue()) {
+        for ( List<Die> set : dice.groupByValue()) {
             result += scoreSet(set);
         }
         return result;
@@ -60,10 +58,6 @@ public class Greed {
 
     private Integer scoreSects(List<Die> dice) {
         return 8 * scoreTriples(dice);
-    }
-
-    private List<List<Die>> groupDiceByValue() {
-        return dice.groupByValue();
     }
 
     private class Die {
