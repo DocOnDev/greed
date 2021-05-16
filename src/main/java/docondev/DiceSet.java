@@ -1,6 +1,7 @@
 package docondev;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 class DiceSet {
     private final List<Die> dieList;
@@ -10,6 +11,7 @@ class DiceSet {
     }
 
     public static DiceSet createDiceSet(List<Die> list) {
+        if (isListWithMultipleValues(list)) throw new IllegalArgumentException("The die in a set must all have the same value.");
         switch(list.size()) {
             case 2:
                 return new DoubleDiceSet(list);
@@ -43,5 +45,9 @@ class DiceSet {
     protected int scoreTriple(Integer dieValue) {
         if (dieValue == 1) return 1000;
         return dieValue * 100;
+    }
+
+    private static boolean isListWithMultipleValues(List<Die> list) {
+        return list.stream().collect(Collectors.groupingBy(Die::getValue, Collectors.toList())).size() > 1;
     }
 }
