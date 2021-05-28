@@ -17,12 +17,12 @@ public class GreedTest {
     }
 
     @Test
-    public void score_1_Return_100() {
+    public void score_Given_1_Return_100() {
         assertThat(greed.score(new Integer[] {1}), is(equalTo(100)));
     }
 
     @Test
-    public void score_5_Return_50() {
+    public void score_Given_5_Return_50() {
         assertThat(greed.score(new Integer[] {5}), is(equalTo(50)));
     }
 }
