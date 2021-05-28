@@ -35,4 +35,9 @@ public class GreedTest {
     public void score_Given_TripleOne_Return_1000() {
         assertThat(greed.score(new Integer[] {1,1,1}), is(equalTo(1000)));
     }
+
+    @Test
+    public void score_Given_TripleTwo_Return_200() {
+        assertThat(greed.score(new Integer[] {2,2,2}), is(equalTo(200)));
+    }
 }
