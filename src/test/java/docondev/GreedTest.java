@@ -3,6 +3,8 @@ package docondev;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.security.InvalidParameterException;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,6 +31,16 @@ public class GreedTest {
     @Test
     public void score_Given_NonScoringSingle_Return_0() {
         assertThat(greed.score(makeSingle(3)), is(equalTo(0)));
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void score_Given_GreaterThan6_Throw_ParameterError() {
+        assertThat(greed.score(makeSingle(7)), is(equalTo(0)));
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void score_Given_LessThan1_Throw_ParameterError() {
+        assertThat(greed.score(makeSingle(0)), is(equalTo(0)));
     }
 
     @Test
