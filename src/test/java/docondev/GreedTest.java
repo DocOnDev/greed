@@ -18,17 +18,17 @@ public class GreedTest {
 
     @Test
     public void score_Given_1_Return_100() {
-        assertThat(greed.score(new Integer[] {1}), is(equalTo(100)));
+        assertThat(greed.score(makeSingle(1)), is(equalTo(100)));
     }
 
     @Test
     public void score_Given_5_Return_50() {
-        assertThat(greed.score(new Integer[] {5}), is(equalTo(50)));
+        assertThat(greed.score(makeSingle(5)), is(equalTo(50)));
     }
 
     @Test
     public void score_Given_NonScoringSingle_Return_0() {
-        assertThat(greed.score(new Integer[] {3}), is(equalTo(0)));
+        assertThat(greed.score(makeSingle(3)), is(equalTo(0)));
     }
 
     @Test
@@ -39,5 +39,14 @@ public class GreedTest {
     @Test
     public void score_Given_TripleTwo_Return_200() {
         assertThat(greed.score(new Integer[] {2,2,2}), is(equalTo(200)));
+    }
+
+    @Test
+    public void score_Given_TripleThree_Return_300() {
+        assertThat(greed.score(new Integer[] {3,3,3}), is(equalTo(300)));
+    }
+
+    private Integer[] makeSingle(int value) {
+        return new Integer[]{value};
     }
 }
