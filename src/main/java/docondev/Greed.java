@@ -13,8 +13,7 @@ public class Greed {
     }
 
     private int scoreTriple(Integer[] value) {
-        if (value[0]==2) return 200;
-        if (value[0]==3) return 300;
-        return 1000;
+        if (value[0]==1) return 1000;
+        return value[0] * 100;
     }
 }
