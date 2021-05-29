@@ -33,20 +33,24 @@ public class GreedTest {
 
     @Test
     public void score_Given_TripleOne_Return_1000() {
-        assertThat(greed.score(new Integer[] {1,1,1}), is(equalTo(1000)));
+        assertThat(greed.score(makeTriple(1)), is(equalTo(1000)));
     }
 
     @Test
     public void score_Given_TripleTwo_Return_200() {
-        assertThat(greed.score(new Integer[] {2,2,2}), is(equalTo(200)));
+        assertThat(greed.score(makeTriple(2)), is(equalTo(200)));
     }
 
     @Test
     public void score_Given_TripleThree_Return_300() {
-        assertThat(greed.score(new Integer[] {3,3,3}), is(equalTo(300)));
+        assertThat(greed.score(makeTriple(3)), is(equalTo(300)));
     }
 
     private Integer[] makeSingle(int value) {
         return new Integer[]{value};
+    }
+
+    private Integer[] makeTriple(int value) {
+        return new Integer[]{value, value, value};
     }
 }
