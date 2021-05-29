@@ -4,10 +4,12 @@ import java.security.InvalidParameterException;
 
 public class Rolls {
     private final Integer[] value;
+    private final DiceSet dice;
     private Integer baseDigit;
 
-    public Rolls(Integer[] value) {
-        this.value = value;
+    public Rolls(DiceSet diceSet) {
+        this.dice = diceSet;
+        this.value = diceSet.getValue();
         baseDigit = this.value[0];
         confirmValidRolls();
     }
