@@ -30,4 +30,10 @@ public class Rolls {
     private void confirmValidRolls() {
         if (getFirstDigit() <1 || getFirstDigit() >6) throw new InvalidParameterException();
     }
+
+    int scoreSingle() {
+        if (getFirstDigit() ==1) return 100;
+        if (getFirstDigit() ==5) return 50;
+        return 0;
+    }
 }
