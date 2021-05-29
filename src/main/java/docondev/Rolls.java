@@ -1,10 +1,13 @@
 package docondev;
 
+import java.security.InvalidParameterException;
+
 public class Rolls {
     private final Integer[] value;
 
     public Rolls(Integer[] value) {
         this.value = value;
+        confirmValidRolls();
     }
 
     public Integer[] getValue() {
@@ -22,5 +25,9 @@ public class Rolls {
     int scoreTriple() {
         if (getFirstDigit()==1) return 1000;
         return getFirstDigit() * 100;
+    }
+
+    private void confirmValidRolls() {
+        if (getFirstDigit() <1 || getFirstDigit() >6) throw new InvalidParameterException();
     }
 }
