@@ -13,29 +13,24 @@ public class Rolls {
     }
 
     int score() {
-        if (value.length == 1) {
-            if (baseDigit == 1) return 100;
-            if (baseDigit == 5) return 50;
+        switch(value.length) {
+            case 1:
+                if (baseDigit == 1) return 100;
+                if (baseDigit == 5) return 50;
+                return 0;
+            case 3:
+                return scoreTriple();
+            case 4:
+                return scoreTriple() * 2;
+            case 5:
+                return scoreTriple() * 4;
         }
-        if (value.length == 3) {
-            if (baseDigit ==1) return 1000;
-            return baseDigit * 100;
-        }
-        if (value.length == 4) {
-            int result = 1000;
-            if (baseDigit != 1) {
-                result = baseDigit * 100;
-            }
-            return result * 2;
-        }
-        if (value.length == 5) {
-            int result = 1000;
-            if (baseDigit != 1) {
-                result = baseDigit * 100;
-            }
-            return result * 4;
-        }
-        return 0;
+        return -1;
+    }
+
+    private int scoreTriple() {
+        if (baseDigit ==1) return 1000;
+        return baseDigit * 100;
     }
 
     private void confirmValidRolls() {
