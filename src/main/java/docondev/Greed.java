@@ -3,10 +3,10 @@ package docondev;
 import java.security.InvalidParameterException;
 
 public class Greed {
-    public Integer score(Integer[] value) {
-        Integer firstDigit = value[0];
+    public Integer score(Throws aThrows) {
+        Integer firstDigit = aThrows.getValue()[0];
         if (firstDigit <1 || firstDigit >6) throw new InvalidParameterException();
-        if (isaTriple(value)) return scoreTriple(value);
+        if (isaTriple(aThrows.getValue())) return scoreTriple(aThrows.getValue());
         if (firstDigit ==1) return 100;
         if (firstDigit ==5) return 50;
         return 0;
