@@ -4,14 +4,12 @@ import java.security.InvalidParameterException;
 
 public class Rolls {
     private final Integer[] value;
+    private Integer baseDigit;
 
     public Rolls(Integer[] value) {
         this.value = value;
+        baseDigit = this.value[0];
         confirmValidRolls();
-    }
-
-    Integer getFirstDigit() {
-        return value[0];
     }
 
     boolean isaTriple() {
@@ -24,17 +22,17 @@ public class Rolls {
     }
 
     private int scoreTriple() {
-        if (getFirstDigit()==1) return 1000;
-        return getFirstDigit() * 100;
+        if (baseDigit ==1) return 1000;
+        return baseDigit * 100;
     }
 
     private int scoreSingle() {
-        if (getFirstDigit() ==1) return 100;
-        if (getFirstDigit() ==5) return 50;
+        if (baseDigit ==1) return 100;
+        if (baseDigit ==5) return 50;
         return 0;
     }
 
     private void confirmValidRolls() {
-        if (getFirstDigit() <1 || getFirstDigit() >6) throw new InvalidParameterException();
+        if (baseDigit <1 || baseDigit >6) throw new InvalidParameterException();
     }
 }
