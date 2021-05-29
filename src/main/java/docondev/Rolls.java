@@ -1,9 +1,9 @@
 package docondev;
 
-public class Throws {
+public class Rolls {
     private final Integer[] value;
 
-    public Throws(Integer[] value) {
+    public Rolls(Integer[] value) {
         this.value = value;
     }
 
