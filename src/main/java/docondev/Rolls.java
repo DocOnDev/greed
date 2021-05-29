@@ -18,4 +18,9 @@ public class Rolls {
     boolean isaTriple() {
         return getValue().length == 3;
     }
+
+    int scoreTriple() {
+        if (getFirstDigit()==1) return 1000;
+        return getFirstDigit() * 100;
+    }
 }
