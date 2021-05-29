@@ -49,14 +49,17 @@ public class GreedTest {
     }
 
     @Test
-    public void score_Given_TripleTwo_Return_200() {
-        assertThat(greed.score(makeTriple(2)), is(equalTo(200)));
+    public void score_Given_TripleNonOneDigit_Return_DigitTimes100() {
+        assertThat(greed.score(makeTriple(3)), is(equalTo(300)));
     }
 
     @Test
-    public void score_Given_TripleThree_Return_300() {
-        assertThat(greed.score(makeTriple(3)), is(equalTo(300)));
+    public void score_Given_Quad_Return_TripleTime2() {
+        assertThat(greed.score(makeQuad(1)), is(equalTo(2000)));
+        assertThat(greed.score(makeQuad(3)), is(equalTo(600)));
     }
+
+    private Integer[] makeQuad(int value) { return new Integer[]{value, value, value, value}; }
 
     private Integer[] makeSingle(int value) {
         return new Integer[]{value};

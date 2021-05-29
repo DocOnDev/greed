@@ -12,13 +12,22 @@ public class Rolls {
         confirmValidRolls();
     }
 
-    boolean isaTriple() {
+    int score() {
+        if (isaTriple()) return scoreTriple();
+        if (isaQuad()) return scoreQuad();
+        return scoreSingle();
+    }
+
+    private boolean isaTriple() {
         return value.length == 3;
     }
 
-    int score() {
-        if (isaTriple()) return scoreTriple();
-        return scoreSingle();
+    private boolean isaQuad() {
+        return value.length == 4;
+    }
+
+    private int scoreQuad() {
+        return scoreTriple() * 2;
     }
 
     private int scoreTriple() {
