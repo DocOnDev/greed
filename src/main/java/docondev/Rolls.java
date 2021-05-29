@@ -14,4 +14,8 @@ public class Rolls {
     Integer getFirstDigit() {
         return getValue()[0];
     }
+
+    boolean isaTriple() {
+        return getValue().length == 3;
+    }
 }
