@@ -59,7 +59,15 @@ public class GreedTest {
         assertThat(greed.score(makeQuad(3)), is(equalTo(600)));
     }
 
+    @Test
+    public void score_Given_Quint_Return_TripleTimes4() {
+        assertThat(greed.score(makeQuint(1)), is(equalTo(4000)));
+        assertThat(greed.score(makeQuint(3)), is(equalTo(1200)));
+    }
+
     private Integer[] makeQuad(int value) { return new Integer[]{value, value, value, value}; }
+
+    private Integer[] makeQuint(int value) { return new Integer[]{value, value, value, value, value}; }
 
     private Integer[] makeSingle(int value) {
         return new Integer[]{value};
