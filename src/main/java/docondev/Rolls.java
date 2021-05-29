@@ -10,4 +10,8 @@ public class Rolls {
     public Integer[] getValue() {
         return value;
     }
+
+    Integer getFirstDigit() {
+        return getValue()[0];
+    }
 }
