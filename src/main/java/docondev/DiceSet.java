@@ -10,6 +10,7 @@ public abstract class DiceSet {
     public DiceSet getSet() {
         if (count() == 1) return new DiceSetSingle(value);
         if (count() == 3) return new DiceSetTriple(value);
+        if (count() == 3) return new DiceSetQuad(value);
         return this;
     }
 
