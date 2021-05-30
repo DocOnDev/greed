@@ -1,10 +1,16 @@
 package docondev;
 
-public class DiceSet {
-    private final Integer[] value;
+public abstract class DiceSet {
+    private Integer[] value;
 
     public DiceSet(Integer[] value) {
         this.value = value;
+    }
+
+    public DiceSet getSet() {
+        if (count() == 1) return new DiceSetSingle(value);
+        if (count() == 3) return new DiceSetTriple(value);
+        return this;
     }
 
     public int count() {
@@ -13,5 +19,12 @@ public class DiceSet {
 
     Integer baseDigit() {
         return value[0];
+    }
+
+    abstract int score();
+
+    int scoreTriple() {
+        if (baseDigit() ==1) return 1000;
+        return baseDigit() * 100;
     }
 }

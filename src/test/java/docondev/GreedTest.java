@@ -65,15 +65,19 @@ public class GreedTest {
         assertThat(greed.score(makeQuint(3)), is(equalTo(1200)));
     }
 
-    private Integer[] makeQuad(int value) { return new Integer[]{value, value, value, value}; }
+    private Integer[] makeQuad(int value) { return makeSet(4, value); }
 
-    private Integer[] makeQuint(int value) { return new Integer[]{value, value, value, value, value}; }
+    private Integer[] makeQuint(int value) { return makeSet(5, value); }
 
-    private Integer[] makeSingle(int value) {
-        return new Integer[]{value};
-    }
+    private Integer[] makeSingle(int value) { return makeSet(1, value); }
 
-    private Integer[] makeTriple(int value) {
-        return new Integer[]{value, value, value};
+    private Integer[] makeTriple(int value) { return makeSet(3, value); }
+
+    private Integer[] makeSet(int setSize, int value) {
+        Integer[] set = new Integer[setSize];
+        for (int idx=0; idx<setSize; idx++) {
+            set[idx] = value;
+        }
+        return set;
     }
 }
