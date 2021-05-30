@@ -8,7 +8,6 @@ public class Greed {
                 return 0;
             }
         };
-        Rolls rolls = new Rolls(diceSet.getSet());
-        return rolls.score();
+        return diceSet.getSet().score();
     }
 }
