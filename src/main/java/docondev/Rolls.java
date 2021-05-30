@@ -3,22 +3,18 @@ package docondev;
 import java.security.InvalidParameterException;
 
 public class Rolls {
-    private final Integer[] value;
     private final DiceSet dice;
-    private Integer baseDigit;
 
     public Rolls(DiceSet diceSet) {
         this.dice = diceSet;
-        this.value = diceSet.getValue();
-        baseDigit = this.value[0];
         confirmValidRolls();
     }
 
     int score() {
-        switch(value.length) {
+        switch(dice.count()) {
             case 1:
-                if (baseDigit == 1) return 100;
-                if (baseDigit == 5) return 50;
+                if (dice.baseDigit() == 1) return 100;
+                if (dice.baseDigit() == 5) return 50;
                 return 0;
             case 3:
                 return scoreTriple();
@@ -31,11 +27,11 @@ public class Rolls {
     }
 
     private int scoreTriple() {
-        if (baseDigit ==1) return 1000;
-        return baseDigit * 100;
+        if (dice.baseDigit() ==1) return 1000;
+        return dice.baseDigit() * 100;
     }
 
     private void confirmValidRolls() {
-        if (baseDigit <1 || baseDigit >6) throw new InvalidParameterException();
+        if (dice.baseDigit() <1 || dice.baseDigit() >6) throw new InvalidParameterException();
     }
 }

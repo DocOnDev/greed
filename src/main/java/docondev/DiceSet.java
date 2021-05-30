@@ -7,7 +7,11 @@ public class DiceSet {
         this.value = value;
     }
 
-    public Integer[] getValue() {
-        return value;
+    public int count() {
+        return value.length;
+    }
+
+    Integer baseDigit() {
+        return value[0];
     }
 }
