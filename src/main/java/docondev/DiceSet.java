@@ -12,21 +12,6 @@ public abstract class DiceSet {
 
     abstract int score();
 
-    public DiceSet getSet() {
-        switch(count()){
-            case 1: return new DiceSetSingle(value);
-            case 3: return new DiceSetTriple(value);
-            case 4: return new DiceSetQuad(value);
-            case 5: return new DiceSetQuint(value);
-            case 6: return new DiceSetSect(value);
-            default: return this;
-        }
-    }
-
-    public int count() {
-        return value.length;
-    }
-
     Integer baseDigit() {
         return value[0];
     }
