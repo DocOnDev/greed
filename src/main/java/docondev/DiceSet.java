@@ -1,17 +1,25 @@
 package docondev;
 
+import java.security.InvalidParameterException;
+
 public abstract class DiceSet {
     private Integer[] value;
 
     public DiceSet(Integer[] value) {
         this.value = value;
+        confirmValidRolls();
     }
 
+    abstract int score();
+
     public DiceSet getSet() {
-        if (count() == 1) return new DiceSetSingle(value);
-        if (count() == 3) return new DiceSetTriple(value);
-        if (count() == 3) return new DiceSetQuad(value);
-        return this;
+        switch(count()){
+            case 1: return new DiceSetSingle(value);
+            case 3: return new DiceSetTriple(value);
+            case 4: return new DiceSetQuad(value);
+            case 5: return new DiceSetQuint(value);
+            default: return this;
+        }
     }
 
     public int count() {
@@ -22,10 +30,12 @@ public abstract class DiceSet {
         return value[0];
     }
 
-    abstract int score();
-
     int scoreTriple() {
         if (baseDigit() ==1) return 1000;
         return baseDigit() * 100;
+    }
+
+    void confirmValidRolls() {
+        if (baseDigit() <1 || baseDigit() >6) throw new InvalidParameterException();
     }
 }
